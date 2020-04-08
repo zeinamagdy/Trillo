@@ -103,28 +103,26 @@
   margin-top: 2.5rem;
   &__item {
     position: relative;
-    &:not(:last-child){
-      margin-bottom: .5rem;
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
     }
   }
-  &__item::before{
+  &__item::before {
     content: "";
     height: 100%;
     width: 3px;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     background-color: var(--color-Primary);
     transform: scaleY(0);
-    transition: transform .2s, 
-                width .4s cubic-bezier(1,0,0,1) .2s, 
-                background-color .1s;
+    transition: transform 0.2s, width 0.4s cubic-bezier(1, 0, 0, 1) 0.2s, background-color 0.1s;
   }
-  &__ietm:active::before{
+  &__ietm:active::before {
     background-color: var(--color-Primary-light);
   }
   &__item:hover::before,
-  &__item--active::before{
+  &__item--active::before {
     transform: scaleY(1);
     width: 100%;
   }
@@ -137,7 +135,7 @@
     position: relative;
     z-index: 10;
     display: block;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
   }
@@ -154,4 +152,102 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 1rem;
+}
+
+// hotel view
+// gallery section
+.gallery {
+  display: flex;
+  &__item {
+  }
+  &__photo {
+    width: 100%;
+    display: block;
+  }
+}
+// overview
+.overview {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-grey-light-1);
+
+  &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1.5rem 3rem;
+  }
+  &__stars {
+    margin-right: auto;
+    display: flex;
+  }
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-Primary);
+  }
+  &__location {
+    font-size: 1.4rem;
+    display: flex;
+    vertical-align: center;
+  }
+  &__icon-location {
+    margin-right: .5rem;
+  }
+  &__rating {
+    background-color: var(--color-Primary);
+    color:#fff;
+    margin-left: 1rem;
+    padding: 0 1rem;
+    align-self: stretch;
+    // to make average and count in center 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+    margin-bottom: -3px;
+  }
+  &__rating-count {
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
+}
+.btn-inline {
+  border: none;
+  color: var(--color-Primary);
+  font-size: inherit;
+  border-bottom: 1px solid currentColor;
+  padding: 2px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--color-grey-light-1S);
+  }
+  &:focus {
+    border: none;
+    animation: plusate 1s infinite ;
+  }
+}
+@keyframes plusate {
+  0% {
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 1rem 4rem rgba($color: #000000, $alpha: 0.25);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: none;
+  }
 }
