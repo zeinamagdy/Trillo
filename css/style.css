@@ -9,8 +9,9 @@
   --color-grey-dark-1: #333;
   --color-grey-dark-2: #777;
   --color-grey-dark-3: #999;
-  --shadow-drak: 0 2rem 6rem rgba(0, 0, 0, 0.3)
-; }
+  --shadow-drak: 0 2rem 6rem rgba(0, 0, 0, 0.3);
+  --shadow-light: 0 2rem 5rem rgba(0,0,0,.06);
+  --line:1px solid var(--color-grey-light-2); }
 
 * {
   margin: 0;
@@ -36,7 +37,7 @@ body {
   min-height: 100vh; }
 
 .container {
-  max-width: 65rem;
+  max-width: 75rem;
   margin: 8rem auto;
   background-color: var(--color-grey-light-1);
   box-shadow: var(--shadow-drak);
@@ -46,7 +47,7 @@ body {
   font-size: 1.4rem;
   height: 7rem;
   background-color: #fff;
-  border-bottom: 1px solid var(--color-grey-light-2);
+  border-bottom: var(--line);
   display: flex;
   justify-content: space-between;
   align-items: center; }
@@ -57,7 +58,6 @@ body {
 .sidebar {
   background-color: var(--color-grey-dark-1);
   flex: 0 0 18%;
-  height: 80rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
@@ -65,6 +65,26 @@ body {
 .hotel-view {
   background-color: #fff;
   flex: 1; }
+
+.details {
+  font-size: 1.2rem;
+  display: flex;
+  padding: 2.5rem;
+  background-color: var(--color-grey-light-1);
+  border-bottom: var(--line); }
+
+.description {
+  background-color: #fff;
+  box-shadow: var(--shadow-light);
+  padding: 2rem;
+  flex: 0 0 60%;
+  margin-right: 3.5rem; }
+
+.user-review {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: center; }
 
 .logo {
   height: 3.5rem;
@@ -197,7 +217,7 @@ body {
 .overview {
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--color-grey-light-1); }
+  border-bottom: var(--line); }
   .overview__heading {
     font-size: 2.25rem;
     font-weight: 300;
@@ -239,14 +259,19 @@ body {
   border: none;
   color: var(--color-Primary);
   font-size: inherit;
-  border-bottom: 1px solid currentColor;
+  border-bottom: var(--line);
   padding: 2px;
   display: inline-block;
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s; }
+  .btn-inline span {
+    margin-left: 3px;
+    transition: margin-left .2s; }
   .btn-inline:hover {
-    color: var(--color-grey-light-1S); }
+    color: var(--color-grey-dark-1); }
+    .btn-inline:hover span {
+      margin-left: 8px; }
   .btn-inline:focus {
     border: none;
     animation: plusate 1s infinite; }
@@ -261,3 +286,88 @@ body {
   100% {
     transform: scale(1);
     box-shadow: none; } }
+
+.paragraph:not(:last-of-type) {
+  margin-bottom: 2rem; }
+
+.list {
+  list-style: none;
+  margin: 3rem 0;
+  padding: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+  display: flex;
+  flex-wrap: wrap; }
+  .list__item {
+    flex: 0 0 50%;
+    margin-bottom: .7rem; }
+  .list__item::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    margin-right: .7rem;
+    display: inline-block;
+    background-color: var(--color-Primary);
+    mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    mask-size: cover;
+    -webkit-mask-size: cover; }
+
+.recommend {
+  font-size: 1.1rem;
+  color: var(--color-grey-dark-3);
+  display: flex;
+  align-items: center; }
+  .recommend__count {
+    margin-right: auto; }
+  .recommend__photo {
+    box-sizing: content-box;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    border: 3px solid #fff; }
+    .recommend__photo:not(:last-child) {
+      margin-right: -1.5rem; }
+
+.review {
+  background-color: #fff;
+  box-shadow: var(--shadow-ligh);
+  padding: 2rem;
+  margin-bottom: 3rem;
+  position: relative; }
+  .review__text {
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+    overflow: hidden; }
+  .review__user {
+    display: flex;
+    align-items: center; }
+  .review__user-box {
+    margin-right: auto; }
+  .review__photo {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    margin-right: .5rem; }
+  .review__user-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: .6rem; }
+  .review__user-date {
+    font-size: 1rem;
+    color: var(--color-grey-dark-3); }
+  .review__rating {
+    color: var(--color-Primary);
+    font-size: 2.2rem;
+    font-weight: 300; }
+  .review::before {
+    content: "\201C";
+    position: absolute;
+    top: -8rem;
+    left: -1rem;
+    font-size: 20rem;
+    color: var(--color-grey-light-2);
+    font-family: sans-serif;
+    z-index: 1; }
