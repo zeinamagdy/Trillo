@@ -8,6 +8,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  @media only screen and (max-width: $bp-small) {
+    order: 1;
+    flex: 0 0 95%;
+    margin-bottom: 1rem;
+  }
 
   &__input {
     font-family: inherit;
@@ -93,7 +98,7 @@
   &__user-photo {
     height: 2.75rem;
     border-radius: 50%;
-    margin-right: 2rem;
+    margin-right: 0.5rem;
   }
 }
 // side navagation
@@ -101,11 +106,22 @@
   font-size: 1.4rem;
   list-style: none;
   margin-top: 2.5rem;
+
+  @media only screen and (max-width: $bp-meduim) {
+    display: flex;
+    margin: 0;
+  }
   &__item {
     position: relative;
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-meduim) {
+        margin-bottom: 0;
+      }
     }
+    // @media only screen and (max-width: $bp-meduim) {
+    //   flex: 1;
+    // }
   }
   &__item::before {
     content: "";
@@ -138,12 +154,25 @@
     padding: 0.5rem 1rem;
     display: flex;
     align-items: center;
+    @media only screen and (max-width: $bp-meduim) {
+      // justify-content: center;
+      padding: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+    }
   }
   &__icon {
     width: 1.75rem;
     height: 1.75rem;
     margin-right: 1rem;
     fill: currentColor;
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 // Legal
@@ -152,6 +181,9 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 1rem;
+  @media only screen and (max-width: $bp-meduim) {
+    display: none;
+  }
 }
 
 // hotel view
@@ -177,6 +209,11 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 1.5rem 3rem;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 1rem 2rem;
+    }
   }
   &__stars {
     margin-right: auto;
@@ -192,17 +229,20 @@
     font-size: 1.4rem;
     display: flex;
     vertical-align: center;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.8rem;
+    }
   }
   &__icon-location {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
   &__rating {
     background-color: var(--color-Primary);
-    color:#fff;
+    color: #fff;
     margin-left: 1rem;
     padding: 0 1rem;
     align-self: stretch;
-    // to make average and count in center 
+    // to make average and count in center
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -212,10 +252,16 @@
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
   &__rating-count {
-    font-size: .8rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 .btn-inline {
@@ -228,20 +274,20 @@
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s;
-    & span{
-      margin-left: 3px;
-      transition:  margin-left .2s;
-    }
+  & span {
+    margin-left: 3px;
+    transition: margin-left 0.2s;
+  }
 
   &:hover {
     color: var(--color-grey-dark-1);
-    & span{
+    & span {
       margin-left: 8px;
     }
   }
   &:focus {
     border: none;
-    animation: plusate 1s infinite ;
+    animation: plusate 1s infinite;
   }
 }
 @keyframes plusate {
@@ -259,111 +305,174 @@
   }
 }
 //pharagraph
-.paragraph:not(:last-of-type){
-  margin-bottom:2rem ;
+.paragraph:not(:last-of-type) {
+  margin-bottom: 2rem;
 }
 //list
-.list{
+.list {
   list-style: none;
-  margin:3rem 0;
+  margin: 3rem 0;
   padding: 3rem 0;
   border-top: var(--line);
   border-bottom: var(--line);
   display: flex;
   flex-wrap: wrap;
-  &__item{
-      flex: 0 0 50%;
-      margin-bottom: .7rem;
+  &__item {
+    flex: 0 0 50%;
+    margin-bottom: 0.7rem;
   }
-  &__item::before{
-      content: "";
-      width: 1rem;
-      height:1rem;
-      margin-right: .7rem;
-      display: inline-block;
+  &__item::before {
+    content: "";
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.7rem;
+    display: inline-block;
+    // solution for old browser,its problem: can't change img's color.
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
+    // check if browser support mask-image property
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
       background-color: var(--color-Primary);
       mask-image: url(../img/chevron-thin-right.svg);
       -webkit-mask-image: url(../img/chevron-thin-right.svg);
       mask-size: cover;
       -webkit-mask-size: cover;
+      background-image: none;;
+    }
   }
 }
-// recommend 
-.recommend{
+// recommend
+.recommend {
   font-size: 1.1rem;
   color: var(--color-grey-dark-3);
   display: flex;
   align-items: center;
-  &__count{
-      margin-right: auto;
+  &__count {
+    margin-right: auto;
   }
-  &__friends{
-
+  &__friends {
+    display: flex;
   }
-  &__photo{
-      box-sizing: content-box;
-      height: 2.5rem;
-      width: 2.5rem;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      
 
-      &:not(:last-child){
-          margin-right: -1.5rem;
-      }
+  &__photo {
+    box-sizing: content-box;
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &:not(:last-child) {
+      margin-right: -1.3rem;
+    }
   }
 }
 // review
-.review{
+.review {
   background-color: #fff;
-  box-shadow: var( --shadow-ligh);
-  padding: 2rem;
+  box-shadow: var(--shadow-ligh);
+  padding: 1rem;
   margin-bottom: 3rem;
   position: relative;
 
-  &__text{
+  &__text {
     margin-bottom: 2rem;
     position: relative;
     z-index: 10;
     overflow: hidden;
   }
-  &__user{
+  &__user {
     display: flex;
     align-items: center;
   }
-  &__user-box{
+  &__user-box {
     margin-right: auto;
   }
-  &__photo{
+  &__photo {
     height: 3.5rem;
     width: 3.5rem;
     border-radius: 50%;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
   }
-  &__user-name{
+  &__user-name {
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: .6rem;
-
+    margin-bottom: 0.6rem;
   }
-  &__user-date{
+  &__user-date {
     font-size: 1rem;
     color: var(--color-grey-dark-3);
   }
-  &__rating{
+  &__rating {
     color: var(--color-Primary);
     font-size: 2.2rem;
     font-weight: 300;
   }
-  &::before{
+  &::before {
     content: "\201C";
     position: absolute;
-    top:-8rem;
-    left:-1rem;
+    top: -8rem;
+    left: -1rem;
     font-size: 20rem;
     color: var(--color-grey-light-2);
     font-family: sans-serif;
     z-index: 1;
+  }
+}
+// call to action
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+  @media only screen and (max-width: $bp-meduim) {
+    padding: 2rem 0;
+  }
+  &__book-now {
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+}
+.btn {
+  font-size: 1.3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 100px;
+  background-image: linear-gradient(to right, var(--color-Primary-light), var(--color-Primary-dark));
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  // padding: 1rem;
+  & > * {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s;
+  }
+  &__visible {
+    padding: 1rem 6.5rem;
+  }
+
+  &__invisble {
+    text-align: center;
+    padding: 1rem 2.3rem;
+    position: absolute;
+    left: 0;
+    top: -100%;
+  }
+  &:hover {
+    background-image: linear-gradient(to left, var(--color-Primary-light), var(--color-Primary-dark));
+  }
+  &:hover &__visible {
+    transform: translateY(100%);
+  }
+  &:hover &__invisble {
+    top: 0;
+  }
+  &:focus {
+    outline: none;
+    animation: plusate 1s infinite;
   }
 }
