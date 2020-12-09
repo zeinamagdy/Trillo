@@ -10,7 +10,9 @@
     "compile:sass": "node-sass  sass/main.scss css/style.css",
     "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' css/style.css -o css/style.prefix.css",
     "compress:css": "node-sass css/style.prefix.css css/style.css --output-style compressed",
-    "build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"
+    "imagemin": "imagemin --out-dir=dist/img assets/img/**/*.{png,jpg,gif}",
+    "build:css": "npm run compile:sass && concat:css && prefix:css&& compress:css",
+    "build": "npm run build"
   },
   "author": "Zeinab Mohamed",
   "license": "ISC",
